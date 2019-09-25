@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useCallback } from "react";
 import { Context as ListContext } from "../context/listContext";
-import Container from "./Container";
-import List from "./List";
-import CardList from "./CardList";
-import Card from "./Card";
+import { Card, CardList, Container, List } from "./";
 
 export default () => {
   const { state, fetchLists } = useContext(ListContext);
