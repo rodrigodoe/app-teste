@@ -4,7 +4,7 @@ import { db } from "../App";
 const listReducer = (state, action) => {
   switch (action.type) {
     case "fetch_lists":
-      return { ...state, lists: action.payload };
+      return action.payload
     default:
       return state;
   }
@@ -27,5 +27,5 @@ const fetchLists = dispatch => async () => {
 export const { Provider, Context } = createDataContext(
   listReducer,
   { fetchLists },
-  { lists: [] }
+  []
 );

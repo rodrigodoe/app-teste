@@ -5,7 +5,7 @@ import { Card, CardList, Container, List } from "./";
 export default () => {
   const { state, fetchLists } = useContext(ListContext);
 
-  console.log();
+  console.log(state);
 
   const tryFecthList = () => {
     fetchLists();
@@ -22,16 +22,17 @@ export default () => {
 
   return (
     <Container>
-      {state.lists.map(l => {
-        const key = Object.keys(l);
-        const lista = l[key];
-        return (
-          <List key={lista.id} nome={lista.nome}>
-            <CardList >{fetchCards(lista.tarefas)}</CardList>
-          </List>
-        );
-      })}
-      )
+      {
+        state.map(l => {
+          const key = Object.keys(l);
+          const lista = l[key];
+          return (
+            <List key={lista.id} nome={lista.nome}>
+              <CardList >{fetchCards(lista.tarefas)}</CardList>
+            </List>
+          );
+        })
+      }
     </Container>
   );
 };
