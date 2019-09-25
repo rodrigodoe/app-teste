@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import firebase from "firebase";
+import { Provider as ListProvider } from "./context/listContext";
+
+import Container from "./components/Container";
+import "./App.css";
+
+const firebaseConfig = {};
+firebase.initializeApp(firebaseConfig);
+
+export const db = firebase.firestore();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ListProvider>
+      <Container />
+    </ListProvider>
   );
 }
 
