@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../App";
+import React from "react";
+import useTask from "../hook/useTask";
 
-export default props => {
-  const [task, setTask] = useState({});
+export default ({ data }) => {
+  const [task] = useTask(data);
 
-  const fetchTask = async () => {
-    const t = await db
-      .collection("tarefa")
-      .doc(props.data)
-      .get()
-      .then(doc => doc.data());
-    setTask(t);
-  };
-
-  useEffect(() => {
-    fetchTask();
-  }, []);
-
-  return <div style={{ color: "red", fontWeight: "bold" }}>{task.nome}</div>;
+  return (
+    <div style={{ color: "red", fontWeight: "bold" }}>
+      {task ? task.nome : null}
+    </div>
+  );
 };

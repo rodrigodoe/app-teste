@@ -1,7 +1,6 @@
 import React from "react";
-import CardList from "./CardList";
 
-export default ({ data }) => {
+export default ({ data: { nome }, children }) => {
   return (
     <div
       style={{
@@ -12,8 +11,8 @@ export default ({ data }) => {
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {data.nome}
-        <CardList id={data.id} />
+        {nome}
+        {children}
       </div>
     </div>
   );
