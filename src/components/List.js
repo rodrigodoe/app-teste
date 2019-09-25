@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ data: { nome }, children }) => {
+export default ({ nome, children }) => {
   return (
     <div
       style={{

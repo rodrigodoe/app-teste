@@ -5,6 +5,8 @@ import { Card, CardList, Container, List } from "./";
 export default () => {
   const { state, fetchLists } = useContext(ListContext);
 
+  console.log();
+
   const tryFecthList = () => {
     fetchLists();
   };
@@ -14,20 +16,22 @@ export default () => {
     callback();
   }, [callback]);
 
-  const fetchCards = id => {
-    const lista = state.lists.find(b => b.id === id);
-    return lista.tarefas
-      ? lista.tarefas.map(t => <Card key={t} data={t} />)
-      : null;
+  const fetchCards = tarefas => {
+    return tarefas ? tarefas.map(t => <Card key={t} data={t} />) : null;
   };
 
   return (
     <Container>
-      {state.lists.map(l => (
-        <List key={l.id} data={l}>
-          <CardList data={l.id}>{fetchCards(l.id)}</CardList>
-        </List>
-      ))}
+      {state.lists.map(l => {
+        const key = Object.keys(l);
+        const lista = l[key];
+        return (
+          <List key={lista.id} nome={lista.nome}>
+            <CardList >{fetchCards(lista.tarefas)}</CardList>
+          </List>
+        );
+      })}
+      )
     </Container>
   );
 };

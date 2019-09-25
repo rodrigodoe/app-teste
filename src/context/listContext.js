@@ -17,7 +17,7 @@ const fetchLists = dispatch => async () => {
     .get()
     .then(snap => {
       snap.forEach(doc => {
-        arr.push({ id: doc.id, ...doc.data() });
+        arr.push({ [doc.id]: { id: doc.id, ...doc.data() } });
       });
     });
 
